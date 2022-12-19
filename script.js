@@ -1,5 +1,5 @@
 import { Player } from "./player.js";
-
+import { InputHandler } from "./input.js";
 window.addEventListener("load", function () {
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
@@ -12,6 +12,7 @@ window.addEventListener("load", function () {
       this.width = width;
       this.height = height;
       this.player = new Player(this);
+      this.input = new InputHandler();
     }
     update() {
       this.player.update();
