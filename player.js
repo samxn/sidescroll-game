@@ -9,7 +9,7 @@ export class Player {
     this.image = document.getElementById("player");
   }
   update() {
-    this.x++; //increases player horizontal coordinate by one pixel
+    // this.x++; //increases player horizontal coordinate by one pixel
   }
   draw(context) {
     context.drawImage(
