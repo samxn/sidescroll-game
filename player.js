@@ -8,7 +8,9 @@ export class Player {
     this.y = this.game.height - this.height; //player position
     this.image = document.getElementById("player");
   }
-  update() {}
+  update() {
+    this.x++; //increases player horizontal coordinate by one pixel
+  }
   draw(context) {
     context.drawImage(
       this.image,
