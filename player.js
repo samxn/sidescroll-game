@@ -8,6 +8,7 @@ import {
   Hit,
 } from "./playerStates.js";
 import { CollisionAnimation } from "./collisionAnimation.js";
+import { FloatingMessage } from "./floatingMessages.js";
 
 export class Player {
   // draws and updates character
@@ -117,6 +118,9 @@ export class Player {
           this.currentState === this.states[5]
         ) {
           this.game.score++;
+          this.game.floatingMessages.push(
+            new FloatingMessage("+1", enemy.x, enemy.y, 150, 50)
+          );
         } else {
           this.setState(6, 0);
           this.game.lives--;
