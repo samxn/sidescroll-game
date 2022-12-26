@@ -2,7 +2,7 @@ export class UI {
   constructor(game) {
     this.game = game;
     this.fontSize = 30;
-    this.fonrFamily = "Helveica";
+    this.fontFamily = "Helveica";
   }
   draw(context) {
     context.font = this.fontSize + "px" + this.fontFamily;
