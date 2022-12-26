@@ -32,7 +32,7 @@ window.addEventListener("load", function () {
       this.debug = false;
       this.score = 0;
       this.winningScore = 40;
-      this.fontColor = "black";
+      this.fontColor = "white";
       this.time = 0;
       this.maxTime = 30000;
       this.gameOver = false;
