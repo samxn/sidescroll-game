@@ -14,6 +14,13 @@ class Layer {
   }
   draw(context) {
     context.drawImage(this.image, this.x, this.y, this.width, this.height);
+    context.drawImage(
+      this.image,
+      this.x + this.width,
+      this.y,
+      this.width,
+      this.height
+    );
   }
 }
 
@@ -22,15 +29,53 @@ export class Background {
     this.game = game;
     this.width = 1667; //background image width
     this.height = 500; //background image height
+    this.layer1image = document.getElementById("layer1");
+    this.layer2image = document.getElementById("layer2");
+    this.layer3image = document.getElementById("layer3");
+    this.layer4image = document.getElementById("layer4");
     this.layer5image = document.getElementById("layer5");
     this.layer1 = new Layer(
       this.game,
       this.width,
       this.height,
       1,
+      this.layer1image
+    );
+    this.layer2 = new Layer(
+      this.game,
+      this.width,
+      this.height,
+      1,
+      this.layer2image
+    );
+    this.layer3 = new Layer(
+      this.game,
+      this.width,
+      this.height,
+      1,
+      this.layer3image
+    );
+    this.layer4 = new Layer(
+      this.game,
+      this.width,
+      this.height,
+      1,
+      this.layer4image
+    );
+    this.layer5 = new Layer(
+      this.game,
+      this.width,
+      this.height,
+      1,
       this.layer5image
     );
-    this.backgroundLayers = [this.layer1];
+    this.backgroundLayers = [
+      this.layer1,
+      this.layer2,
+      this.layer3,
+      this.layer4,
+      this.layer5,
+    ];
   }
   update() {
     this.backgroundLayers.forEach((layer) => {
