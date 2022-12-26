@@ -66,7 +66,7 @@ export class Background {
       this.game,
       this.width,
       this.height,
-      2,
+      2, //change to 1 for forest background
       this.layer5image
     );
     this.backgroundLayers = [

@@ -15,7 +15,7 @@ window.addEventListener("load", function () {
     constructor(width, height) {
       this.width = width;
       this.height = height;
-      this.groundMargin = 80; // player margin used to match player to background
+      this.groundMargin = 80; // player margin used to match player to background, change to 40 for forest background
       this.speed = 0;
       this.maxSpeed = 3;
       this.background = new Background(this);
