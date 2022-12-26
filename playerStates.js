@@ -57,7 +57,7 @@ export class Running extends State {
     } else if (input.includes("ArrowUp")) {
       this.game.player.setState(states.JUMPING, 1);
     } else if (input.includes("Enter")) {
-      this.game.player.setState(states.ROLLING, 1);
+      this.game.player.setState(states.ROLLING, 2);
     }
   }
 }
@@ -76,7 +76,9 @@ export class Jumping extends State {
     if (this.game.player.vy > this.game.player.weight) {
       this.game.player.setState(states.FALLING, 1);
     } else if (input.includes("Enter")) {
-      this.game.player.setState(states.ROLLING, 1);
+      this.game.player.setState(states.ROLLING, 2);
+    } else if (input.includes("ArrowDown")) {
+      this.game.player.setState(states.DIVING, 0);
     }
   }
 }
@@ -93,6 +95,8 @@ export class Falling extends State {
   handleInput(input) {
     if (this.game.player.onGround()) {
       this.game.player.setState(states.RUNNING, 1);
+    } else if (input.includes("ArrowDown")) {
+      this.game.player.setState(states.DIVING, 0);
     }
   }
 }
@@ -125,6 +129,35 @@ export class Rolling extends State {
       this.game.player.onGround()
     ) {
       this.game.player.vy -= 26;
+    } else if (input.includes("ArrowDown")) {
+      this.game.player.setState(states.DIVING, 0);
+    }
+  }
+}
+
+export class Diving extends State {
+  constructor(game) {
+    super("DIVING", game);
+  }
+  enter() {
+    this.game.player.frameX = 0; // prevents blinking before changing states
+    this.game.player.maxFrame = 6;
+    this.game.player.frameY = 6;
+    this.game.player.vy = 15; // allows player to dive with power
+  }
+  handleInput(input) {
+    this.game.particles.unshift(
+      new Fire(
+        this.game,
+        this.game.player.x + this.game.player.width * 0.5,
+        this.game.player.y + this.game.player.height * 0.5
+      )
+    );
+
+    if (this.game.player.onGround()) {
+      this.game.player.setState(states.RUNNING, 1);
+    } else if (input.includes("Enter") && !this.game.player.onGround()) {
+      this.game.player.setState(states.ROLLING, 2);
     }
   }
 }
