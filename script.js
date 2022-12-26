@@ -24,6 +24,7 @@ window.addEventListener("load", function () {
       this.UI = new UI(this);
       this.enemies = [];
       this.particles = [];
+      this.collisions = [];
       this.maxParticles = 100;
       this.enemyTimer = 0;
       this.enemyInterval = 1000;
@@ -36,7 +37,7 @@ window.addEventListener("load", function () {
     update(deltaTime) {
       this.background.update();
       this.player.update(this.input.keys, deltaTime);
-      // handle Enemies
+      // handle enemies
       if (this.enemyTimer > this.enemyInterval) {
         this.addEnemy();
         this.enemyTimer = 0;
@@ -56,6 +57,11 @@ window.addEventListener("load", function () {
       if (this.particles.lenfth > this.maxParticles) {
         this.particles = this.particles.slice(0, this.maxParticles);
       }
+      // handle collision sprites
+      this.collisions.forEach((collision, index) => {
+        collision.update(deltaTime);
+        if (collision.markedForDeletion) this.collisions.splice(index, 1);
+      });
     }
     draw(context) {
       this.background.draw(context);
@@ -65,6 +71,9 @@ window.addEventListener("load", function () {
       });
       this.particles.forEach((particle) => {
         particle.draw(context);
+      });
+      this.collisions.forEach((collision) => {
+        collision.draw(context);
       });
       this.UI.draw(context);
     }
