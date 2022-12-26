@@ -28,7 +28,7 @@ window.addEventListener("load", function () {
       this.maxParticles = 100;
       this.enemyTimer = 0;
       this.enemyInterval = 1000;
-      this.debug = true;
+      this.debug = false;
       this.score = 0;
       this.fontColor = "black";
       this.player.currentState = this.player.states[0];

@@ -12,6 +12,9 @@ export class CollisionAnimation {
     this.frameX = 0;
     this.maxFrame = 4;
     this.markedForDeletion = false;
+    this.fps = Math.random() * 10 + 5;
+    this.frameInterval = 1000 / this.fps;
+    this.frameTimer = 0;
   }
   draw(context) {
     context.drawImage(
@@ -26,7 +29,15 @@ export class CollisionAnimation {
       this.height
     );
   }
-  update() {
+  update(deltaTime) {
     this.x -= this.game.speed;
+    if (this.frameTimer > this.frameInterval) {
+      this.frameX++;
+      this.frameTimer = 0;
+    } else {
+      this.frameTimer += deltaTime;
+    }
+
+    if (this.frameX > this.maxFrame) this.markedForDeletion = true;
   }
 }
