@@ -5,6 +5,7 @@ class Enemy {
     this.fps = 20;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
+    this.markedForDeletion = false;
   }
   update(deltaTime) {
     //movement
@@ -17,6 +18,8 @@ class Enemy {
     } else {
       this.frameTimer += deltaTime;
     }
+    //check if enemy is off screen
+    if (this.x + this.width < 0) this.markedForDeletion = true;
   }
   draw(context) {
     context.drawImage(
