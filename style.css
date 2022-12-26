@@ -23,6 +23,7 @@
 #enemy_plant,
 #enemy_spider_big,
 #fire,
-#collisionAnimation {
+#collisionAnimation,
+#lives {
   display: none;
 }
