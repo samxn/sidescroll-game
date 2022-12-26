@@ -1,7 +1,8 @@
 export class InputHandler {
   //capture and keep track of user input
 
-  constructor() {
+  constructor(game) {
+    this.game = game;
     this.keys = [];
     window.addEventListener("keydown", (e) => {
       if (
