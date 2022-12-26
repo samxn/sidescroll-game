@@ -14,7 +14,8 @@ window.addEventListener("load", function () {
       this.width = width;
       this.height = height;
       this.groundMargin = 50; // player margin used to match player to background
-      this.speed = 3;
+      this.speed = 0;
+      this.maxSpeed = 3;
       this.background = new Background(this);
       this.player = new Player(this);
       this.input = new InputHandler();
