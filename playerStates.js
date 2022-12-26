@@ -49,7 +49,7 @@ export class Jumping extends State {
     this.player = player;
   }
   enter() {
-    if (this.player.onGround()) this.player.vy -= 30;
+    if (this.player.onGround()) this.player.vy -= 26; // change number for jump height
     this.player.frameY = 1;
   }
   handleInput(input) {
