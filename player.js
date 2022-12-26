@@ -7,14 +7,14 @@ export class Player {
     this.width = 100; // width of sprite sheet divided by horizontal frames
     this.height = 91.3; // height of sprite sheet divided by vertical frames/rows
     this.x = 0; //player position
-    this.y = this.game.height - this.height; //player position
+    this.y = this.game.height - this.height - this.game.groundMargin; //player position
     this.vy = 0;
     this.weight = 1;
     this.image = document.getElementById("player");
     this.frameX = 0;
     this.frameY = 0;
     this.maxFrame;
-    this.fps = 20;
+    this.fps = 20; // changes sprite animation speed
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
     this.speed = 0;
@@ -66,7 +66,7 @@ export class Player {
     );
   }
   onGround() {
-    return this.y >= this.game.height - this.height;
+    return this.y >= this.game.height - this.height - this.game.groundMargin;
   }
   setState(state) {
     this.currentState = this.states[state];
