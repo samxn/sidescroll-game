@@ -1,4 +1,4 @@
-import { Sitting } from "./playerStates.js";
+import { Sitting, Running } from "./playerStates.js";
 
 export class Player {
   // draws and updates character
@@ -15,7 +15,7 @@ export class Player {
     this.frameY = 0;
     this.speed = 0;
     this.maxSpeed = 10;
-    this.states = [new Sitting(this)];
+    this.states = [new Sitting(this), new Running(this)];
     this.currentState = this.states[0];
     this.currentState.enter();
   }
@@ -31,7 +31,7 @@ export class Player {
       this.x = this.game.width - this.width;
     // vertical movement
 
-    if (input.includes("ArrowUp") && this.onGround()) this.vy -= 20; // change number for jump height
+    if (input.includes("ArrowUp") && this.onGround()) this.vy -= 30; // change number for jump height
     this.y += this.vy;
     if (!this.onGround()) this.vy += this.weight;
     else this.vy = 0;
